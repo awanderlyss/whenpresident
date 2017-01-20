@@ -18,7 +18,8 @@ app.engine(".hbs", hbs({
 app.use("/assets", express.static("public"));
 app.use(parser.json({extended: true}));
 
-app.get("/", function(req, res){
+// add wildcard
+app.get("/*", function(req, res){
   res.render("candidates");
 });
 

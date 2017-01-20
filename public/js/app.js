@@ -8,6 +8,7 @@
     .config([
       "$stateProvider",
       "$locationProvider",
+      "$urlRouterProvider",
       Router
     ])
     .factory("Candidate", [
@@ -26,7 +27,7 @@
       showCrtlFunction
     ]);
 
-    function Router($stateProvider, $locationProvider){
+    function Router($stateProvider, $locationProvider, $urlRouterProvider){
       $locationProvider.html5Mode(true);
       $stateProvider
         .state("welcome", {
@@ -45,6 +46,7 @@
           controller: "showCrtl",
           controllerAs: "vm"
         });
+      $urlRouterProvider.otherwise("/")
     }
 
     function CandidateFunction($resource) {

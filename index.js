@@ -47,9 +47,10 @@ app.delete("/api/candidates/:name", function(req, res){
 });
 
 app.put("/api/candidates/:name", function(req, res){
-  Candidate.findOneAndUpdate({name: req.params.name}, req.body.candidate, {new: true}).then(function(candidate){
-    res.json(candidate);
-  });
+  Candidate.findOneAndUpdate({name: req.params.name}, req.body, {new: true})
+    .then(function(candidate){
+      res.json(candidate);
+    });
 });
 
 app.listen(app.get("port"), function(){

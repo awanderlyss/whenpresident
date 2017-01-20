@@ -65,6 +65,9 @@
 
     function showCrtlFunction($stateParams, Candidate){
       this.candidate = Candidate.get({name: $stateParams.name});
+      this.update = function () {
+        this.candidate.$update({name: $stateParams.name});
+      };
     }
 
 })();

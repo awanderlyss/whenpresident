@@ -19,6 +19,7 @@
       indexCtrlFunction
     ])
     .controller("showCrtl", [
+      "$state",
       "$stateParams",
       "Candidate",
       showCrtlFunction
@@ -63,10 +64,16 @@
       };
     }
 
-    function showCrtlFunction($stateParams, Candidate){
+    function showCrtlFunction($state, $stateParams, Candidate){
       this.candidate = Candidate.get({name: $stateParams.name});
       this.update = function () {
         this.candidate.$update({name: $stateParams.name});
+      };
+      this.destroy = function () {
+        this.candidate.$delete({name: $stateParams.name})
+          .then(function(){
+            $state.go("index");
+          });
       };
     }
 

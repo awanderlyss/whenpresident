@@ -14,6 +14,7 @@
       CandidateFunction
     ])
     .controller("indexCtrl", [
+      "$state",
       "Candidate",
       indexCtrlFunction
     ])
@@ -51,8 +52,15 @@
       });
     }
 
-    function indexCtrlFunction(Candidate){
+    function indexCtrlFunction($state, Candidate){
       this.candidates = Candidate.query();
+      this.newCandidate = new Candidate();
+      this.create = function(){
+        this.newCandidate.$save()
+          .then(function(candidate){
+            $state.go("show", {name: candidate.name});
+          });
+      };
     }
 
     function showCrtlFunction($stateParams, Candidate){
